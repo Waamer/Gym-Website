@@ -5,6 +5,7 @@
   <title>Scizoholic Lifters</title>
   <meta name="viewport" content="initial-scale=1.0">
   <meta charset="utf-8">
+  <meta http-equiv="Permissions-Policy" content="interest-cohort()">
     
     <!--
         THE API KEY
@@ -22,7 +23,15 @@
       <div id="info-text"></div>
       <div id="info-image"></div>
     </div>
+
     <div id="map"></div>
+
+    <div class="map-generator">
+      <label for="location-input">Enter the Desired Location:&nbsp</label>
+      <input type="text" id="location-input" name="location-input">
+      <button onclick="generateMap()">Generate Map</button>
+    </div>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApkbHrimbTDPImTsd5ZBDR2yId5oA4i24&libraries=places&callback=initMap"></script>
     
 </body>

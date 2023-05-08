@@ -1,32 +1,44 @@
 let map;
 let selectedMarker;
+var count = 0;
 
-function initMap(){ // Initialize and add the map
+function generateMap() {
+  initMap();
+}
+
+function initMap() { // Initialize and add the map
   
-  navigator.geolocation.getCurrentPosition(function(pos){ // Get current location
-    let location = { 
-      lat: pos.coords.latitude, 
-      lng: pos.coords.longitude
-    }
+  count = count + 1;
+  if (count != 1){ // most lazy fix in the existance of man
 
-    map = new google.maps.Map(document.getElementById('map'), { // The map, centered at location
-      zoom: 13,
-      center: location,
-    });
+    const locationInput = document.getElementById("location-input").value; // get user input div
+    
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode({ address: locationInput }, function (results, status) {
+      
+      if (status === "OK") {
+        const location = results[0].geometry.location;
 
-    var marker = new google.maps.Marker({ // The marker, positioned at location
-      map: map,
-      position: location,
-      icon: {
-        url: 'images/Marker2.png',
-        scaledSize: new google.maps.Size(35, 50) // scaled size
+        map = new google.maps.Map(document.getElementById("map"), { // The map, centered at location
+          zoom: 13,
+          center: location,
+        });
+
+        var marker = new google.maps.Marker({ // The marker, positioned at location
+          map: map,
+          position: location,
+          icon: {
+            url: "images/Marker2.png",
+            scaledSize: new google.maps.Size(35, 50), // scaled size
+          },
+        });
+
+        getGyms(location); // Get gyms near location
+      } else {
+        alert("Please Input a correct location buddy");
       }
     });
-
-    getGyms(location) // Get gyms near location
-
-  });
-
+  }
 }
 
 function getGyms(loc){ // Get gyms near location

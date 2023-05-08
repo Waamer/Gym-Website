@@ -1,11 +1,14 @@
+@import url('https://fonts.cdnfonts.com/css/resist-sans-display');
+
 #info-container {
   display: flex;
   flex-direction: row;
   position: absolute;
   background-color: white;
   padding: 15px;
-  margin: 10px;
+  margin: 14px;
   border: 2px solid #ccc;
+  border-radius: 7.5px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   z-index: 1;
 }
@@ -27,9 +30,9 @@
 
 #map {
   height: 60%;
-  width: 100%;
-  border: 2px solid #ccc;
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  width: 90%;
+  border: 5px solid #811A05;
+  border-radius: 15px;
 }
 
 html,
@@ -37,30 +40,30 @@ body {
  height: 100%;
  margin: 0;
  padding: 0;
+ font-family: 'Resist Sans Text', sans-serif;
 }
 
 body {
- background-color: #f7f7f7;
+ background-color: #DABD90;
 }
 
 h1, h3, h4 {
- font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  margin: 0;
 }
 
 h1 {
- font-size: 22px;
+ font-size: 26px;
  font-weight: bold;
 }
 
 h3 {
- font-size: 16px;
+ font-size: 20px;
  font-weight: normal;
  color: #555;
 }
 
 h4 {
- font-size: 14px;
+ font-size: 16px;
  font-weight: normal;
  color: #888;
 }
@@ -78,4 +81,17 @@ img {
   max-width: 400px;
   height: auto;
 }
+}
+
+.map-generator{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  background-color: #DABD90;
+  color: #811A05;
+  padding: 15px;
+  margin: 10px;
+  z-index: 1;
+  font-weight: bold;
+  font-size: 30px;
 }
