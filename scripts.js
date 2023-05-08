@@ -44,9 +44,10 @@ function initMap() { // Initialize and add the map
 function getGyms(loc){ // Get gyms near location
   var request = {  // Create a request object
     location: loc,  
-    radius: '5000', // 5km
+    radius: '50000', // 5km
     type: ['gym'], 
-    keyword: "(weight room) OR (cardio machines)"  // Search for gyms with weight rooms or cardio machines
+    keyword: "(weights) OR (cardio machines) OR (fitness) -crossfit -yoga " // Get gyms with weights or cardio machines, but not crossfit or yoga
+  
   };
   service = new google.maps.places.PlacesService(map); // Create a PlacesService object
   service.nearbySearch(request, callback) // Perform a nearby search
