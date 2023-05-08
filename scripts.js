@@ -44,7 +44,7 @@ function initMap() { // Initialize and add the map
 function getGyms(loc){ // Get gyms near location
   var request = {  // Create a request object
     location: loc,  
-    radius: '50000', // 5km
+    radius: '50000', // make this a user input???
     type: ['gym'], 
     keyword: "(weights) OR (cardio machines) OR (fitness) -crossfit -yoga " // Get gyms with weights or cardio machines, but not crossfit or yoga
   
