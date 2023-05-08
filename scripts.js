@@ -1,83 +1,83 @@
 let map;
 let selectedMarker;
 
-function initMap(){
+function initMap(){ // Initialize and add the map
   
-  navigator.geolocation.getCurrentPosition(function(pos){
-    let location = {
-      lat: pos.coords.latitude,
+  navigator.geolocation.getCurrentPosition(function(pos){ // Get current location
+    let location = { 
+      lat: pos.coords.latitude, 
       lng: pos.coords.longitude
     }
 
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map'), { // The map, centered at location
       zoom: 13,
       center: location,
     });
 
-    var marker = new google.maps.Marker({
+    var marker = new google.maps.Marker({ // The marker, positioned at location
       map: map,
       position: location,
       icon: {
         url: 'images/Marker2.png',
-        scaledSize: new google.maps.Size(35, 50)
+        scaledSize: new google.maps.Size(35, 50) // scaled size
       }
     });
 
-    getGyms(location)
+    getGyms(location) // Get gyms near location
 
   });
 
 }
 
-function getGyms(loc){
-  var request = {
-    location: loc,
-    radius: '5000',
-    type: ['gym'],
-    keyword: "(weight room) OR (cardio machines)"
+function getGyms(loc){ // Get gyms near location
+  var request = {  // Create a request object
+    location: loc,  
+    radius: '5000', // 5km
+    type: ['gym'], 
+    keyword: "(weight room) OR (cardio machines)"  // Search for gyms with weight rooms or cardio machines
   };
-  service = new google.maps.places.PlacesService(map);
-  service.nearbySearch(request, callback)
+  service = new google.maps.places.PlacesService(map); // Create a PlacesService object
+  service.nearbySearch(request, callback) // Perform a nearby search
 }
 
-function callback(results, status){
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++){
-      var place = results[i];
+function callback(results, status){ // Handle the response
+  if (status == google.maps.places.PlacesServiceStatus.OK) { // If the request was successful
+    for (var i = 0; i < results.length; i++){ // Loop through the results
+      var place = results[i]; // Get the place details for each result
        
-       var photos = place.photos;
-       var image = "";
-       if (photos && photos.length > 0) {
-         image = `<img src="${photos[0].getUrl({maxWidth: 500, maxHeight: 400})}" />`;
+       var photos = place.photos; // Get the photos for each result
+       var image = ""; // Create an empty string for the image
+       if (photos && photos.length > 0) { // If there is a photo
+         image = `<img src="${photos[0].getUrl({maxWidth: 500, maxHeight: 400})}" />`; // Get the photo
        }
 
-       var rating = ""
-       if(place.rating){rating = "Rating: " + place.rating + " \u272e"}
+       var rating = "" // Create an empty string for the rating
+       if(place.rating){rating = "Rating: " + place.rating + " \u272e"} // If there is a rating, get the rating
  
-       let content = `${image}
+       let content = `${image} 
                       <h1>${place.name}</h1>
                       <h3>${place.vicinity}</h3>
                       <h4>${rating}</h4>
-                      `;
+                      `; // Create the content for the info-container
 
-      var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location,
-        title: place.name,
-        icon: {
+      var marker = new google.maps.Marker({ // Create a marker for each result
+        map: map, 
+        position: place.geometry.location, // Get the location
+        title: place.name, // Get the name
+        icon: { // Set the icon
           url: 'images/Marker.png',
-          scaledSize: new google.maps.Size(35, 50)
+          scaledSize: new google.maps.Size(35, 50) // scaled size
         }
       });
 
-      bindThings(marker, content);
-      marker.setMap(map);
+      bindThings(marker, content); // Bind the marker to the info-container
+      marker.setMap(map); // Set the marker on the map
     }
   }
 }
 
-function bindThings(marker, content) {
-  marker.addListener("click", function () {
+function bindThings(marker, content) { // Bind the marker to the info-container
+  marker.addListener("click", function () { // Add a click listener to the marker
 
        // Reset previously selected marker
        if (selectedMarker) {
@@ -97,17 +97,17 @@ function bindThings(marker, content) {
       selectedMarker = marker;
     
     // Update the info-container with the new content
-    const parser = new DOMParser();
-    const contentHTML = parser.parseFromString(content, "text/html");
+    const parser = new DOMParser(); // Create a DOMParser object
+    const contentHTML = parser.parseFromString(content, "text/html"); // Parse the content as HTML
     
-    const textDiv = document.getElementById("info-text");
-    const imageDiv = document.getElementById("info-image");
+    const textDiv = document.getElementById("info-text"); // Get the info-text div
+    const imageDiv = document.getElementById("info-image"); // Get the info-image div
     
-    textDiv.innerHTML = "";
-    imageDiv.innerHTML = "";
+    textDiv.innerHTML = ""; // Clear the info-text div
+    imageDiv.innerHTML = ""; // Clear the info-image div
     
-    textDiv.appendChild(contentHTML.querySelector("h1"));
-    textDiv.appendChild(contentHTML.querySelector("h3"));
+    textDiv.appendChild(contentHTML.querySelector("h1")); // Add the content to the info-text div
+    textDiv.appendChild(contentHTML.querySelector("h3")); 
     textDiv.appendChild(contentHTML.querySelector("h4"));
     imageDiv.appendChild(contentHTML.querySelector("img"));
   });
