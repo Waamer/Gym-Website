@@ -3,10 +3,11 @@ let selectedMarker;
 var count = 0;
 
 function generateMap() {
-  initMap();
+  const radiusInput = document.getElementById("radius-slider").value; // get radius slider value
+  initMap(radiusInput);
 }
 
-function initMap() { // Initialize and add the map
+function initMap(radiusInput) { // Initialize and add the map
   
   count = count + 1;
   if (count != 1){ // most lazy fix in the existance of man
@@ -33,7 +34,7 @@ function initMap() { // Initialize and add the map
           },
         });
 
-        getGyms(location); // Get gyms near location
+        getGyms(location, radiusInput); // Get gyms near location
       } else {
         alert("Please Input a correct location buddy");
       }
@@ -41,10 +42,10 @@ function initMap() { // Initialize and add the map
   }
 }
 
-function getGyms(loc){ // Get gyms near location
+function getGyms(loc, radiusInput){ // Get gyms near location
   var request = {  // Create a request object
     location: loc,  
-    radius: '50000', // make this a user input???
+    radius: radiusInput * 1000, // meter to km
     type: ['gym'], 
     keyword: "(weights) OR (cardio machines) OR (fitness) -crossfit -yoga " // Get gyms with weights or cardio machines, but not crossfit or yoga
   
