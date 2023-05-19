@@ -1,0 +1,57 @@
+@import url('https://fonts.cdnfonts.com/css/resist-sans-display');
+
+html,
+body {
+ height: 100%;
+ font-family: 'Resist Sans Text', sans-serif;
+}
+
+body {
+  background-color: #DABD90
+}
+
+#info-container h1 {
+ font-size: 2vh;
+ font-weight: bold;
+}
+
+#info-container h3 {
+ font-size: 18px;
+ font-weight: normal;
+ color: #555;
+}
+
+#info-container h4 {
+ font-size: 16px;
+ font-weight: normal;
+ color: #888;
+}
+  
+  [data-theme='mytheme'] {
+    
+    --p: 4 100% 22%;
+    --s: 40 100% 96%;
+    --a: 15 67% 93%;
+    --n: 347 16% 22%;
+    --b1: 36 50% 71%;
+    --in: 169 90% 88%;
+    --su: 170 100% 23%;
+    --wa: 42 74% 42%;
+    --er: 4 48% 53%;
+    --pf: 4 100% 17%;
+    --sf: 40 100% 77%;
+    --af: 15 66% 74%;
+    --nf: 347 16% 17%;
+    --b2: 37 50% 64%;
+    --b3: 37 50% 57%;
+    --bc: 36 100% 14%;
+    --pc: 4 100% 84%;
+    --sc: 40 47% 19%;
+    --ac: 15 56% 19%;
+    --nc: 347 50% 84%;
+    --inc: 169 100% 18%;
+    --suc: 170 100% 85%;
+    --wac: 42 100% 8%;
+    --erc: 4 100% 91%;
+
+}

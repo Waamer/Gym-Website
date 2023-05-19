@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+<html data-theme="mytheme"></html>
+
+<head>
+  <title>Scizoholic Lifters</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta http-equiv="Permissions-Policy" content="interest-cohort()">
+    
+    <!--
+        THE API KEY
+        AIzaSyApkbHrimbTDPImTsd5ZBDR2yId5oA4i24
+    -->
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <link href="/dist/output.css" rel="stylesheet">
+    
+    <script src="./scripts.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="navbar bg-secondary"> <!--Navbar-->
+      <div class="navbar-start lg:hidden md:hidden sm:hidden">
+        <div class="dropdown">
+          <label tabindex="0" class="btn btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          </label>
+          <ul tabindex="0" class="menu bg-secondary menu-compact dropdown-content mt-4 p-2 shadow w-40">
+            <li><a>Gyms</a></li>
+            <li><a>Health</a></li>
+          </ul>
+        </div>
+        <a class="btn btn-ghost normal-case text-xl">Schizo Lifters</a>
+      </div>
+
+      <div class="navbar-start hidden sm:flex pl-5">
+        <a class="btn btn-ghost normal-case text-xl">Schizo Lifters</a>
+      </div>
+    
+      <div class="navbar-end hidden sm:flex pr-5">
+        <ul class="menu menu-horizontal px-1">
+          <li><a>Gyms</a></li>
+          <li><a>Health</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="w-full h-full block"> <!--Webpage Content Container-->
+
+
+      <div id="map" class="h-3/5 w-90 m-5 lg:w-7/12 md:w-7/12 sm:w-7/12 border-solid border-4 border-primary rounded-xl"> <!--Map Container-->
+        <img src="images/test.png" alt="Map Placeholder" class="w-full h-full object-cover rounded-lg">
+        <div class="absolute inset-0 w-64 top-1/4 z-10">
+          <div class="shadow-xl glass p-6">
+            <h2 class="text-2xl font-bold">Gyms Near You!</h2>
+            <p>Fill in the Info and then click the Generate Map button</p>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="info-container" style="left:60%;" class="flex flex-col p-4 m-5 rounded-md bg-secondary lg:absolute lg:top-16 md:absolute md:top-16 sm:absolute sm:top-16"> <!--Info Container-->
+        <div id="info-text" class="pr-4"></div>
+        <div id="info-image" class="mt-2 overflow-hidden"></div>
+      </div>
+      
+      <label class="label w-full font-bold text-xl px-4"> <!--Input Label-->
+        <span class="label-text px-3">Enter your desired:</span>
+      </label>
+      <div class="flex flex-col px-6 z-10 w-full font-bold text-xl sm:w-1/2 md:w-1/3 lg:w-1/4 md:flex-row lg:flex-row"> <!--Input Container-->
+          <div class="input-group m-2 w-full">
+            <span class="p-1 w-28">Location</span>
+            <input type="text" id="location-input" placeholder="Desired Location" class="input input-bordered bg-secondary text-base-100 w-full mr-3 sm:w-10/12 md:w-10-12 lg:w-10/12" />
+          </div>
+          <div class="input-group m-2 w-full">
+            <span class="p-1 w-24">Radius</span>
+            <input type="range" id="radius-slider" min="1" max="50" value="25" class="range range-md range-secondary mt-1.5 pr-4 md:mt-2 md:range-lg">
+          </div>
+          <button class="btn btn-primary mt-2 md:m-2 lg:m-2" onclick="generateMap()">Generate Map</button>
+      </div>
+    
+    
+    </div>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApkbHrimbTDPImTsd5ZBDR2yId5oA4i24&libraries=places&callback=initMap"></script>
+    
+</body>
+</html>
